@@ -1,0 +1,26 @@
+import type { Hours, Resource } from './campus';
+
+const H = (o: string, c: string): [number, number] => {
+  const t = (s: string) => Number(s.slice(0, 2)) * 60 + Number(s.slice(3));
+  return [t(o), t(c)];
+};
+const wk = (o: string, c: string, sat: [number, number] | null = null, sun: [number, number] | null = null): Hours => [H(o, c), H(o, c), H(o, c), H(o, c), H(o, c), sat, sun];
+
+export const DEMO_RESOURCES: Resource[] = [
+  { id: 'lib-main', name: 'Main Library', category: 'Library', description: 'Lending, short-loan collection, printing and silent study on floors 3–4.', building: 'Hartley Building', room: 'Ground floor desk', accessibility: 'Step-free entrance on Mill Lane; lifts to all floors.', phone: '+1 555 0100', email: 'library@demo-university.example', hours: [H('08:00', '26:00'), H('08:00', '26:00'), H('08:00', '26:00'), H('08:00', '26:00'), H('08:00', '22:00'), H('10:00', '18:00'), H('12:00', '22:00')] },
+  { id: 'lib-law', name: 'Law & Social Sciences Library', category: 'Library', description: 'Reference collection and legal databases. Bring your student card.', building: 'Ashcroft House', room: 'Level 2', phone: '+1 555 0104', hours: wk('09:00', '19:00', H('10:00', '16:00')) },
+  { id: 'study-24', name: 'Learning Commons (24-hour study)', category: 'Study spaces', description: 'Bookable group rooms, power at every desk, quiet zone upstairs.', building: 'Learning Commons', accessibility: 'Automatic doors; accessible toilets on each floor.', hours: Array(7).fill(H('00:00', '24:00')) },
+  { id: 'study-eng', name: 'Engineering project lab', category: 'Study spaces', description: 'Workbenches and soldering stations. Induction required before first use.', building: 'Faraday Wing', room: 'B14', email: 'eng-lab@demo-university.example', hours: wk('10:00', '18:00') },
+  { id: 'health', name: 'Student Health Centre', category: 'Health', description: 'GP appointments, vaccinations and sexual health clinic. Call first for same-day slots.', building: 'Nightingale Building', phone: '+1 555 0123', hours: wk('08:30', '17:30') },
+  { id: 'pharmacy', name: 'Campus Pharmacy', category: 'Health', description: 'Prescriptions and over-the-counter medicine.', building: 'Student Union', room: 'Shop 3', phone: '+1 555 0124', hours: wk('09:00', '18:00', H('10:00', '14:00')) },
+  { id: 'counselling', name: 'Counselling & Mental Health Service', category: 'Wellbeing', description: 'Free confidential appointments. Drop-in triage weekday afternoons.', building: 'Elm House', room: 'First floor', accessibility: 'Ramp at rear entrance; ring the bell for assistance.', email: 'wellbeing@demo-university.example', hours: wk('09:00', '17:00') },
+  { id: 'chaplaincy', name: 'Multi-faith Chaplaincy', category: 'Wellbeing', description: 'Prayer rooms, ablution facilities and a quiet reflection space.', building: 'Chapel Court', hours: wk('08:00', '20:00', H('10:00', '16:00'), H('10:00', '16:00')) },
+  { id: 'cafe', name: 'Refectory Café', category: 'Food', description: 'Hot meals, vegan and halal options, free hot water for your own cup.', building: 'Student Union', room: 'Level 1', hours: wk('07:30', '19:00', H('09:00', '15:00')) },
+  { id: 'market', name: 'Friday Food Market', category: 'Food', description: 'Street-food stalls on the main lawn. Cards only.', building: 'Main Lawn (outdoors)', hours: [null, null, null, null, H('11:00', '15:00'), null, null] },
+  { id: 'it', name: 'IT Service Desk', category: 'IT help', description: 'Password resets, Wi-Fi setup and laptop loans. Bring ID.', building: 'Hartley Building', room: 'Room G.07', phone: '+1 555 0150', email: 'it-help@demo-university.example', hours: wk('08:00', '18:00', H('10:00', '14:00')) },
+  { id: 'careers', name: 'Careers & Employability Hub', category: 'Careers', description: 'CV reviews, mock interviews and part-time job board.', building: 'Elm House', room: 'Ground floor', email: 'careers@demo-university.example', hours: wk('09:30', '16:30') },
+  { id: 'disability', name: 'Disability & Inclusion Advice', category: 'Accessibility', description: 'Study support plans, exam adjustments and assistive technology loans.', building: 'Elm House', room: 'G.12', accessibility: 'Fully step-free; hearing loop at reception.', phone: '+1 555 0177', email: 'inclusion@demo-university.example', hours: wk('09:00', '17:00') },
+  { id: 'shuttle', name: 'Night Safety Shuttle', category: 'Transport', description: 'Free minibus between campus and halls after dark. Board at the Union stop.', building: 'Union bus stop', hours: [H('19:00', '26:00'), H('19:00', '26:00'), H('19:00', '26:00'), H('19:00', '26:00'), H('19:00', '27:00'), H('19:00', '27:00'), null] },
+  { id: 'bikes', name: 'Bike repair station', category: 'Transport', description: 'Self-service pump and tools. No staff — always available.', building: 'Car park C', hours: Array(7).fill(H('00:00', '24:00')) },
+  { id: 'archive', name: 'Special Collections Reading Room — rare books, manuscripts and the university archive (appointment only)', category: 'Library', description: 'Request items 48 hours ahead. Pencils only.', building: 'Hartley Building', room: 'Level 5', hours: [H('10:00', '16:00'), null, H('10:00', '16:00'), null, H('10:00', '13:00'), null, null] },
+].map((r) => ({ ...r, demo: true }));
