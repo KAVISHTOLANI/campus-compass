@@ -2,6 +2,8 @@
 
 A searchable directory of campus resources — libraries, study spaces, health, wellbeing, food, IT help, careers, accessibility and transport — with live opening status, location and access details, contacts and favourites.
 
+**Live demo:** [https://kavishtolani.github.io/campus-compass/](https://kavishtolani.github.io/campus-compass/) — runs entirely in your browser; demo data is fictional and labelled.
+
 ![Directory filtered to Health, open now](docs/directory.png)
 
 | Landing | Mobile |
@@ -44,3 +46,7 @@ Demo data: 16 places at a fictional “Demo University” with fictional `.examp
 ## Future improvements
 
 - Exceptions calendar (holidays, term breaks), an embeddable campus map, and editing of user-added places.
+
+## Licence
+
+MIT — see [LICENSE](LICENSE).
